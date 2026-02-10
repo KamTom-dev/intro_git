@@ -26,41 +26,67 @@ document.getElementById('decrement').addEventListener('click', () => {
 });
 
 // ===== Todoリスト =====
+const STORAGE_KEY = 'todo-items';
 const todoInput = document.getElementById('todo-input');
 const todoList = document.getElementById('todo-list');
 
-function addTodo() {
-  const text = todoInput.value.trim();
-  if (!text) return;
+function saveTodos() {
+  const items = Array.from(todoList.querySelectorAll('li')).map((li) => ({
+    text: li.querySelector('.todo-text').textContent,
+    done: li.classList.contains('done'),
+  }));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+}
 
+function createTodoElement(text, done) {
   const li = document.createElement('li');
+  if (done) li.classList.add('done');
   li.innerHTML = `
     <span class="todo-text">${text}</span>
     <button class="delete-btn">&times;</button>
   `;
 
-  // クリックで完了切替
   li.querySelector('.todo-text').addEventListener('click', () => {
     li.classList.toggle('done');
     const status = li.classList.contains('done') ? '完了' : '未完了';
     addLog(`Todo "${text}" → ${status}`);
+    saveTodos();
   });
 
-  // 削除ボタン
   li.querySelector('.delete-btn').addEventListener('click', () => {
     li.remove();
     addLog(`Todo "${text}" を削除`);
+    saveTodos();
   });
 
-  todoList.appendChild(li);
+  return li;
+}
+
+function loadTodos() {
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (!stored) return;
+  const items = JSON.parse(stored);
+  items.forEach(({ text, done }) => {
+    todoList.appendChild(createTodoElement(text, done));
+  });
+}
+
+function addTodo() {
+  const text = todoInput.value.trim();
+  if (!text) return;
+
+  todoList.appendChild(createTodoElement(text, false));
   addLog(`Todo "${text}" を追加`);
   todoInput.value = '';
+  saveTodos();
 }
 
 document.getElementById('add-todo').addEventListener('click', addTodo);
 todoInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') addTodo();
 });
+
+loadTodos();
 
 // ===== 初期ログ =====
 addLog('アプリケーションが起動しました');
