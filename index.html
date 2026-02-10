@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code Web ハンズオン</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Claude Code Web ハンズオン</h1>
+    <p class="subtitle">実践で学ぶ AI駆動開発</p>
+  </header>
+
+  <main>
+    <section class="card" id="history-section">
+      <h2>デバイス横断 開発ログ</h2>
+      <p>どのデバイスから、いつ、何が変更されたかの記録</p>
+      <ul id="dev-log">
+        <li class="log-entry">
+          <span class="device-badge pc">PC/Mobile</span>
+          <span class="log-detail">
+            <strong>Step 1:</strong> プロジェクト作成 + 開発ログセクション追加
+            <br><small class="log-time">セッション #1 で実行</small>
+          </span>
+        </li>
+        <li class="log-entry">
+          <span class="device-badge pc">PC</span>
+          <span class="log-detail">
+            <strong>Step 2:</strong> PCからTodoリストにlocalStorage保存機能を追加
+            <br><small class="log-time">セッション #2 (PC CLI) で実行</small>
+          </span>
+        </li>
+        <li class="log-entry">
+          <span class="device-badge mobile">Mobile</span>
+          <span class="log-detail">
+            <strong>Step 3:</strong> モバイルに戻りStep 2を確認、開発ログを完成
+            <br><small class="log-time">セッション #1 (Mobile Web) で実行</small>
+          </span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="card" id="counter-section">
+      <h2>Exercise 1: カウンター</h2>
+      <p>Claude Codeが生成したインタラクティブなUI</p>
+      <div class="counter">
+        <button id="decrement">−</button>
+        <span id="count">0</span>
+        <button id="increment">＋</button>
+      </div>
+    </section>
+
+    <section class="card" id="todo-section">
+      <h2>Exercise 2: Todoリスト</h2>
+      <p>タスク管理の基本機能</p>
+      <div class="todo-input">
+        <input type="text" id="todo-input" placeholder="新しいタスクを入力...">
+        <button id="add-todo">追加</button>
+      </div>
+      <ul id="todo-list"></ul>
+    </section>
+
+    <section class="card" id="log-section">
+      <h2>Exercise 3: 操作ログ</h2>
+      <p>すべての操作が記録されます</p>
+      <div id="log" class="log"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>このプロジェクトは Claude Code Web版 で作成されました</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
