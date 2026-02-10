@@ -57,6 +57,55 @@ main {
   margin-bottom: 16px;
 }
 
+/* Dev Log */
+#dev-log {
+  list-style: none;
+}
+
+.log-entry {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #2a2a4a;
+}
+
+.log-entry:last-child {
+  border-bottom: none;
+}
+
+.device-badge {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.device-badge.pc {
+  background: #2d6a4f;
+  color: #b7e4c7;
+}
+
+.device-badge.mobile {
+  background: #5a189a;
+  color: #e0aaff;
+}
+
+.device-badge.both {
+  background: #e76f51;
+  color: #fff;
+}
+
+.log-detail strong {
+  color: #eee;
+}
+
+.log-detail small {
+  color: #555;
+}
+
 /* Counter */
 .counter {
   display: flex;
