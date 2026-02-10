@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pip install snowflake-cli-labs 2>/dev/null; echo 'Snow CLI ready'"
+          }
+        ]
+      }
+    ]
+  }
+}
